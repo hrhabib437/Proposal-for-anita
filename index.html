@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>A question for Anita</title>
+
+ <style>
+ body {
+ min-height: 100vh;
+ margin: 0;
+ display: grid;
+ place-items: center;
+ background: #fff0f5;
+ font-family: Arial, sans-serif;
+ text-align: center;
+ color: #5b2340;
+ }
+
+ main {
+ padding: 24px;
+ }
+
+ h1 {
+ font-size: clamp(2rem, 7vw, 3.5rem);
+ }
+
+.buttons {
+ display: flex;
+ justify-content: center;
+ gap: 16px;
+ margin-top: 28px;
+ min-height: 60px;
+ }
+
+ button {
+ border: 0;
+ border-radius: 12px;
+ padding: 14px 24px;
+ font-size: 1.1rem;
+ cursor: pointer;
+ }
+
+ #yes {
+ background: #e8437a;
+ color: white;
+ }
+
+ #no {
+ background: #eee;
+ color: #333;
+ position: relative;
+ }
+
+ #message {
+ font-size: 1.5rem;
+ font-weight: bold;
+ }
+ </style>
+</head>
+
+<body>
+ <main>
+ <section id="question">
+ <h1>Hey Anita, I LOVE YOU! 💖</h1>
+ <h2>Will you be my girlfriend?</h2>
+
+ <div class="buttons">
+ <button id="yes">Yes 💕</button>
+ <button id="no" type="button">No</button>
+ </div>
+ </section>
+
+ <p id="message" hidden></p>
+ </main>
+
+ <script>
+ const noButton = document.getElementById("no");
+ const yesButton = document.getElementById("yes");
+ const message = document.getElementById("message");
+ const question = document.getElementById("question");
+
+ function dodgeNoButton() {
+ const x = Math.random() * 160 - 80;
+ const y = Math.random() * 100 - 50;
+ noButton.style.transform = `translate(${x}px, ${y}px)`;
+ }
+
+ noButton.addEventListener("pointerenter", dodgeNoButton);
+
+ noButton.addEventListener("touchstart", (event) => {
+ event.preventDefault();
+ dodgeNoButton();
+ }, { passive: false });
+
+ yesButton.addEventListener("click", () => {
+ question.hidden = true;
+ message.hidden = false;
+ message.textContent = "You are now officially my girlfriend! 💖";
+ });
+ </script>
+</body>
+</html>
